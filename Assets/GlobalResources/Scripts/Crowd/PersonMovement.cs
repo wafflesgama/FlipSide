@@ -7,6 +7,9 @@ public class PersonMovement : MonoBehaviour
 {
     public float moveSpeed;
     public float rotLerpSpeed;
+    public float swerveForce;
+    public float nextWaypointThres = 2.5f;
+    public float swerveThres = .4f;
 
     public bool isMoving;
     public bool upDirection;
@@ -38,9 +41,10 @@ public class PersonMovement : MonoBehaviour
 
     void SetNextWaypoint()
     {
-        if ((upDirection && currentWayPoint >= waypoints.Length - 1) || (!upDirection && currentWayPoint <= 0))
+        if ((upDirection && nextWayPoint >= waypoints.Length - 1) || (!upDirection && currentWayPoint <= 0))
         {
             isMoving = false;
+            Destroy(gameObject);
             return;
         }
         nextWayPoint += upDirection ? 1 : -1;
@@ -50,9 +54,19 @@ public class PersonMovement : MonoBehaviour
     {
         if (!isMoving) return;
 
-        if (Vector3.Distance(waypoints[nextWayPoint].position, transform.position) < 2f)
+        if (Vector3.Distance(waypoints[nextWayPoint].position, transform.position) < nextWaypointThres)
             SetNextWaypoint();
 
+        if(rigidBody.velocity.magnitude < swerveThres)
+        {
+            Vector3 direction;
+            if (upDirection)
+                direction = transform.right;
+            else
+                direction = -transform.right;
+
+            rigidBody.AddForce(direction * swerveForce, ForceMode.Impulse);
+        }
 
         transform.forward = Vector3.Lerp(transform.forward, waypoints[nextWayPoint].position - transform.position, Time.deltaTime * rotLerpSpeed);
 
