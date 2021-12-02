@@ -16,24 +16,25 @@ public class PersonMovement : MonoBehaviour
     public Transform[] waypoints;
     public int currentWayPoint;
     public int nextWayPoint;
-
-    //CharacterController characterController;
+    public float maxRandomOffset;
+    Vector3 offset;
     Rigidbody rigidBody;
 
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
-        //characterController = GetComponent<CharacterController>();
     }
 
     public void Spawn(bool upDirection, Transform[] waypoints, int currentWayPoint)
     {
+        offset= upDirection ? transform.right : -transform.right;
+        offset *= Random.Range(0,maxRandomOffset);
 
         this.upDirection = upDirection;
         this.waypoints = waypoints;
         this.currentWayPoint = currentWayPoint;
         this.nextWayPoint = currentWayPoint;
-        transform.position = waypoints[currentWayPoint].position;
+        transform.position = waypoints[currentWayPoint].position+ offset;
         SetNextWaypoint();
         isMoving = true;
 
@@ -41,20 +42,19 @@ public class PersonMovement : MonoBehaviour
 
     void SetNextWaypoint()
     {
+        nextWayPoint += upDirection ? 1 : -1;
+
         if ((upDirection && nextWayPoint >= waypoints.Length - 1) || (!upDirection && currentWayPoint <= 0))
         {
-            isMoving = false;
             Destroy(gameObject);
-            return;
         }
-        nextWayPoint += upDirection ? 1 : -1;
     }
 
     void FixedUpdate()
     {
         if (!isMoving) return;
 
-        if (Vector3.Distance(waypoints[nextWayPoint].position, transform.position) < nextWaypointThres)
+        if (Vector3.Distance(waypoints[nextWayPoint].position+offset, transform.position) <= nextWaypointThres)
             SetNextWaypoint();
 
         if(rigidBody.velocity.magnitude < swerveThres)
@@ -68,9 +68,7 @@ public class PersonMovement : MonoBehaviour
             rigidBody.AddForce(direction * swerveForce, ForceMode.Impulse);
         }
 
-        transform.forward = Vector3.Lerp(transform.forward, waypoints[nextWayPoint].position - transform.position, Time.deltaTime * rotLerpSpeed);
-
+        transform.forward = Vector3.Lerp(transform.forward, waypoints[nextWayPoint].position+ offset - transform.position, Time.deltaTime * rotLerpSpeed);
         rigidBody.AddForce(transform.forward * moveSpeed);
-        //characterController.Move(transform.forward * moveSpeed);
     }
 }
