@@ -8,14 +8,14 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: teste
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 86a94730c2b2c7743b55739a689f6110,
+    type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
-  stringTagMap:
-    RenderType: Opaque
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -77,6 +77,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_49e542eeaa484a8aacb1bc33fdeed2d4: -0.02
+    - Vector1_4ba7f91107ad4546b97edc9959c4613e: 2.36
+    - Vector1_53e44bf25bb3424fb9eba48165f04eb7: 1.44
+    - Vector1_93bfacebb5c94646bce7e7c08e197a48: 1.11
+    - Vector1_9e84aa8720774c2497c1e803f6070514: -1.94
+    - Vector1_cbec70741f0647b893a150b872aedf58: 6.49
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
