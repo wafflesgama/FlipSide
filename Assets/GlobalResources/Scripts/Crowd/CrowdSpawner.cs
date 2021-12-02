@@ -9,6 +9,7 @@ public class CrowdSpawner : MonoBehaviour
     public GameObject personTemplate;
     public float spawnRate;
     public LayerMask layerMask;
+    public bool randomizeRate = true;
 
     void Start()
     {
@@ -22,10 +23,13 @@ public class CrowdSpawner : MonoBehaviour
         {
             var obj = GameObject.Instantiate(personTemplate, transform.position, transform.rotation);
             obj.transform.parent = transform;
-            obj.GetComponent<PersonMovement>().Spawn(upDirection,waypointsToFollow,upDirection? 0: waypointsToFollow.Length-1);
+            obj.GetComponent<PersonMovement>().Spawn(upDirection, waypointsToFollow, upDirection ? 0 : waypointsToFollow.Length - 1);
             yield return new WaitForSeconds(spawnRate / 2);
         }
-        yield return new WaitForSeconds(spawnRate / 2);
+
+        for (int i = 1; i < Random.Range(3, 9); i++)
+            yield return new WaitForSeconds(spawnRate / 4);
+
         StartCoroutine(SpawnPerson());
     }
 }

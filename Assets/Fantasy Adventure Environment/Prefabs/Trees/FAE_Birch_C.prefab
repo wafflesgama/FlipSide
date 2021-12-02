@@ -55,6 +55,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -80,6 +81,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1000011220565778
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,6 +137,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -160,6 +163,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1000012975581248
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,6 +219,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -239,6 +244,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1000013552779140
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,25 +290,25 @@ LODGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000013552779140}
   serializedVersion: 2
-  m_LocalReferencePoint: {x: 0.07730222, y: 9.130499, z: -0.012174606}
-  m_Size: 18.290787
+  m_LocalReferencePoint: {x: 0.07730389, y: 8.987788, z: -0.012174606}
+  m_Size: 18.576208
   m_FadeMode: 1
   m_AnimateCrossFading: 1
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.6
+  - screenRelativeHeight: 0.35760194
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23000012225757576}
-  - screenRelativeHeight: 0.3
+  - screenRelativeHeight: 0.1424267
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23000014164786950}
-  - screenRelativeHeight: 0.14598863
+  - screenRelativeHeight: 0.055319726
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23000013903306166}
-  - screenRelativeHeight: 0.052374937
+  - screenRelativeHeight: 0.019324943
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23000012292883012}
@@ -328,7 +334,7 @@ NavMeshObstacle:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000013552779140}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Shape: 0
   m_Extents: {x: 0.3, y: 8, z: 0.3}
@@ -392,6 +398,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -417,3 +424,4 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
