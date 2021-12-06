@@ -6,27 +6,36 @@ using UnityEngine.Rendering.Universal;
 
 public class Desaturation : MonoBehaviour
 {
-    public Volume volume;
+    public float saturatedValue=50;
+    public float deStaturatedValue=-70;
+    public float lerpSpeed=2;
+    Volume volume;
     ColorAdjustments c;
-
-    public float Cor;
+    public int action=0;
 
     
     void Start()
     {
-        //volume = gameobject.GetComponent<Volume>();
-        //volume.profile.TryGet(out c);
-
+        volume = GetComponent<Volume>();
+        volume.profile.TryGet<ColorAdjustments>(out c);
+        Saturate();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-         if (volume.profile.TryGet<ColorAdjustments>(out c))
-                {
-                     c.saturation.value = Cor;
-                }
-       
-
+        if (action != 0)
+        {
+            c.saturation.value = Mathf.Lerp(c.saturation.value, (action == 1 ? saturatedValue : deStaturatedValue),Time.deltaTime* lerpSpeed);
+            
+            if (action==1 && c.saturation.value >= saturatedValue-1 || action == -1 && c.saturation.value <= deStaturatedValue+1)
+                action = 0;
+        }
     }
+
+    public void Desaturate()
+    {
+        action = -1;
+    }
+    public void Saturate() => action = 1;
+    
 }

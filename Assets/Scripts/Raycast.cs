@@ -14,7 +14,6 @@ public class Raycast : MonoBehaviour
     public GameObject raycast;
     public GameObject bolha;
 
-    private Component col;
     public GameObject pessoas;
     public GameObject carros;
 
@@ -24,8 +23,7 @@ public class Raycast : MonoBehaviour
 
     public GameObject sat;
 
-    public Volume volume;
-    ColorAdjustments c;
+    public Desaturation desaturation;
 
     public Animator mike_anim;
 
@@ -37,10 +35,10 @@ public class Raycast : MonoBehaviour
 
 
 
-    // Start is called before the first frame update
     void Start()
     {
-        serialController = GameObject.Find("SerialController").GetComponent<SerialController>();
+        serialController = GetComponent<SerialController>();
+        serialController.SendSerialMessage("D");
     }
 
     // Update is called once per frame
@@ -49,30 +47,20 @@ public class Raycast : MonoBehaviour
 
 
     }
+  
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
+        if (other.tag != "Player") return;
 
         pessoas.SetActive(false);
         carros.SetActive(false);
         mike.SetActive(true);
-
-        fundo.volume = Mathf.Lerp(fundo.volume, 0f, speed_cor);
+        desaturation.Desaturate();
 
         mike_anim.SetBool("mike", true);
 
-        serialController.SendSerialMessage("A");
+        serialController.SendSerialMessage("L");
 
-        if (other.CompareTag("Player"))
-        {
-            raycast.GetComponent<Raycast>().enabled = true;
-
-        }
-
-        if (volume.profile.TryGet<ColorAdjustments>(out c))
-        {
-            //c.saturation.value = Cor;
-            c.saturation.value = Mathf.Lerp(c.saturation.value, -100, speed_cor);
-        }
     }
 }

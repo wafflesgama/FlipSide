@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Desaturation Profile
   m_EditorClassIdentifier: 
   components:
-  - {fileID: 8078069618277708229}
---- !u!114 &8078069618277708229
+  - {fileID: 658244646361791570}
+--- !u!114 &658244646361791570
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}

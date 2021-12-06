@@ -27,7 +27,7 @@ public class PersonMovement : MonoBehaviour
 
     public void Spawn(bool upDirection, Transform[] waypoints, int currentWayPoint)
     {
-        offset= upDirection ? transform.right : -transform.right;
+        offset= upDirection ? transform.right : transform.forward;
         offset *= Random.Range(0,maxRandomOffset);
 
         this.upDirection = upDirection;
@@ -44,7 +44,7 @@ public class PersonMovement : MonoBehaviour
     {
         nextWayPoint += upDirection ? 1 : -1;
 
-        if ((upDirection && nextWayPoint >= waypoints.Length - 1) || (!upDirection && currentWayPoint <= 0))
+        if ((upDirection && nextWayPoint >= waypoints.Length - 1) || (!upDirection && nextWayPoint <= 0))
         {
             Destroy(gameObject);
         }

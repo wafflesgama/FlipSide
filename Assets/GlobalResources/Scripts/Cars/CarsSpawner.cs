@@ -16,10 +16,11 @@ public class CarsSpawner : MonoBehaviour
     IEnumerator SpawnCar()
     {
         var colliders = Physics.OverlapBox(transform.position, transform.localScale,transform.rotation, layerMask);
-        Debug.Log($"Num colliders {colliders.Length}");
+        //Debug.Log($"Num colliders {colliders.Length}");
         if (colliders.Length == 0)
         {
-            GameObject.Instantiate(carTypes[Random.Range(0, carTypes.Length)],transform.position, transform.rotation);
+           var car= GameObject.Instantiate(carTypes[Random.Range(0, carTypes.Length)],transform.position, transform.rotation);
+            car.transform.parent = transform;
             yield return new WaitForSeconds(spawnRate / 2);
         }
         yield return new WaitForSeconds(spawnRate / 2);

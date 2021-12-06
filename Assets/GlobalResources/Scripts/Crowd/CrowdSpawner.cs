@@ -10,15 +10,17 @@ public class CrowdSpawner : MonoBehaviour
     public float spawnRate;
     public LayerMask layerMask;
     public bool randomizeRate = true;
+    BoxCollider boxCollider;
 
     void Start()
     {
+        boxCollider = GetComponent<BoxCollider>();
         StartCoroutine(SpawnPerson());
     }
 
     IEnumerator SpawnPerson()
     {
-        var colliders = Physics.OverlapBox(transform.position, transform.localScale, transform.rotation, layerMask);
+        var colliders = Physics.OverlapBox(transform.position, boxCollider.size, transform.rotation, layerMask);
         if (colliders.Length == 0)
         {
             var obj = GameObject.Instantiate(personTemplate, transform.position, transform.rotation);

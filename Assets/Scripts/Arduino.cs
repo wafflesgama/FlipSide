@@ -7,7 +7,7 @@ public class Arduino : MonoBehaviour
 {
 
 
-   SerialPort sp = new SerialPort("COM7", 9600);
+   SerialPort sp = new SerialPort("COM4", 9600);
     float next_time; int ii = 0;
     // Use this for initialization
     void Start () {
